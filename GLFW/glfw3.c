@@ -1,4 +1,12 @@
 // Core/Common files (always included)
+#pragma once
+#ifdef _GLFW_WIN32
+#pragma comment(lib, "gdi32.lib")
+#pragma comment(lib, "user32.lib")
+#pragma comment(lib, "shell32.lib")
+#pragma comment(lib, "opengl32.lib")
+#endif
+
 #include "context.c"
 #include "egl_context.c"
 #include "init.c"
@@ -9,11 +17,13 @@
 #include "vulkan.c"
 #include "window.c"
 
-// Null platform (always included)
+// Null platform (for unsupported platforms)
+#if !defined(_GLFW_WIN32) && !defined(_GLFW_COCOA) && !defined(_GLFW_X11) && !defined(_GLFW_WAYLAND)
 #include "null_init.c"
 #include "null_joystick.c"
 #include "null_monitor.c"
 #include "null_window.c"
+#endif
 
 // Windows platform
 #if defined(_GLFW_WIN32)
@@ -25,7 +35,6 @@
 #include "win32_thread.c"
 #include "win32_time.c"
 #include "win32_window.c"
-
 #endif
 
 // macOS platform
@@ -36,7 +45,6 @@
 #include "cocoa_time.c"
 #include "cocoa_window.m"
 #include "nsgl_context.m"
-
 #endif
 
 // X11 platform
@@ -47,7 +55,6 @@
 #include "x11_monitor.c"
 #include "x11_window.c"
 #include "xkb_unicode.c"
-
 #endif
 
 // Wayland platform
@@ -57,14 +64,12 @@
 #include "wl_monitor.c"
 #include "wl_window.c"
 #include "xkb_unicode.c"
-
 #endif
 
 // POSIX threading (used on non-Windows platforms)
 #if !defined(_WIN32)
 #include "posix_module.c"
 #include "posix_thread.c"
-
 #endif
 
 // POSIX time (used on POSIX platforms that aren't macOS)

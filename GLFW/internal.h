@@ -46,7 +46,7 @@
 #endif
 
 #define GLFW_INCLUDE_NONE
-#include "../include/GLFW/glfw3.h"
+#include "glfw3.h"
 
 #define _GLFW_INSERT_FIRST      0
 #define _GLFW_INSERT_LAST       1
@@ -78,12 +78,25 @@ typedef struct _GLFWjoystick    _GLFWjoystick;
 typedef struct _GLFWtls         _GLFWtls;
 typedef struct _GLFWmutex       _GLFWmutex;
 
+#ifndef GL_VERSION
 #define GL_VERSION 0x1f02
+#endif
+#ifndef GL_NONE
 #define GL_NONE 0
+#endif
+#ifndef LG_COLOR_BUFFER_BIT
 #define GL_COLOR_BUFFER_BIT 0x00004000
+#endif
+#ifndef LG_UNSIGNED_BYTE
 #define GL_UNSIGNED_BYTE 0x1401
+#endif
+#ifndef GL_EXTENSIONS
 #define GL_EXTENSIONS 0x1f03
+#endif
+#ifndef GL_NUM_EXTENSIONS
 #define GL_NUM_EXTENSIONS 0x821d
+#endif
+#ifndef GL_CONTEXT_FLAGS
 #define GL_CONTEXT_FLAGS 0x821e
 #define GL_CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT 0x00000001
 #define GL_CONTEXT_FLAG_DEBUG_BIT 0x00000002
@@ -96,6 +109,7 @@ typedef struct _GLFWmutex       _GLFWmutex;
 #define GL_CONTEXT_RELEASE_BEHAVIOR 0x82fb
 #define GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH 0x82fc
 #define GL_CONTEXT_FLAG_NO_ERROR_BIT_KHR 0x00000008
+#endif
 
 typedef int GLint;
 typedef unsigned int GLuint;
@@ -325,7 +339,7 @@ typedef VkResult (APIENTRY * PFN_vkEnumerateInstanceExtensionProperties)(const c
 #include "platform.h"
 
 #define GLFW_NATIVE_INCLUDE_NONE
-#include "../include/GLFW/glfw3native.h"
+#include "glfw3native.h"
 
 // Checks for whether the library has been initialized
 #define _GLFW_REQUIRE_INIT()                         \
@@ -1006,4 +1020,3 @@ int _glfw_max(int a, int b);
 void* _glfw_calloc(size_t count, size_t size);
 void* _glfw_realloc(void* pointer, size_t size);
 void _glfw_free(void* pointer);
-

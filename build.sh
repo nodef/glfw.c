@@ -38,14 +38,12 @@ echo ""
 
 # Test the project
 test() {
-echo "Running 01-vec3.c ..."
-clang -I. -o 01.exe examples/01-vec3.c    && ./01.exe && echo -e "\n"
-echo "Running 02-vec4.c ..."
-clang -I. -o 02.exe examples/02-vec4.c    && ./02.exe && echo -e "\n"
-echo "Running 03-mat4x4.c ..."
-clang -I. -o 03.exe examples/03-mat4x4.c  && ./03.exe && echo -e "\n"
-echo "Running 04-quat.c ..."
-clang -I. -o 04.exe examples/04-quat.c    && ./04.exe && echo -e "\n"
+echo "Running 01-basic-window.c ..."
+clang -I. -o 01.exe examples/01-basic-window.c    && ./01.exe && echo -e "\n"
+echo "Running 02-input-handling.c ..."
+clang -I. -o 02.exe examples/02-input-handling.c    && ./02.exe && echo -e "\n"
+# echo "Running 03-opengl-rendering.c ..."
+# clang -I. -o 03.exe examples/03-opengl-rendering.c  && ./03.exe && echo -e "\n"
 }
 
 

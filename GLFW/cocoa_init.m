@@ -692,4 +692,3 @@ void _glfwTerminateCocoa(void)
 }
 
 #endif // _GLFW_COCOA
-

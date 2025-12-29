@@ -66,6 +66,7 @@ And then include `glfw3.h` as follows:
 
 ```c
 // main.c
+#define GLFW_IMPLEMENTATION
 #include "node_modules/glfw.c/GLFW/glfw3.h"
 
 int main() { /* ... */ }
@@ -82,6 +83,7 @@ You may also use a simpler approach:
 
 ```c
 // main.c
+#define GLFW_IMPLEMENTATION
 #include <GLFW/glfw3.h>
 
 int main() { /* ... */ }

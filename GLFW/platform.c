@@ -75,9 +75,12 @@ GLFWbool _glfwSelectPlatform(int desiredID, _GLFWplatform* platform)
     }
 
     // Only allow the Null platform if specifically requested
+    #if !defined(_GLFW_WIN32) && !defined(_GLFW_COCOA) && !defined(_GLFW_X11) && !defined(_GLFW_WAYLAND)
     if (desiredID == GLFW_PLATFORM_NULL)
         return _glfwConnectNull(desiredID, platform);
-    else if (count == 0)
+    else
+    #endif
+    if (count == 0)
     {
         _glfwInputError(GLFW_PLATFORM_UNAVAILABLE, "This binary only supports the Null platform");
         return GLFW_FALSE;
@@ -209,4 +212,3 @@ GLFWAPI const char* glfwGetVersionString(void)
 #endif
         ;
 }
-
