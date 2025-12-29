@@ -96,6 +96,20 @@ extern "C" {
  #define _WIN32
 #endif /* _WIN32 */
 
+// Define the appropriate platform if not already defined by the user
+#if !defined(_GLFW_WIN32) && !defined(_GLFW_COCOA) && !defined(_GLFW_X11) &&   \
+    !defined(_GLFW_WAYLAND)
+#if defined(_WIN32) || defined(_WIN64)
+#define _GLFW_WIN32
+#elif defined(__APPLE__) && defined(__MACH__)
+#define _GLFW_COCOA
+#elif defined(__linux__) || defined(__unix__)
+// Default to X11 for Linux/Unix
+// Users can explicitly define _GLFW_WAYLAND to use Wayland instead
+#define _GLFW_X11
+#endif
+#endif
+
 /* Include because most Windows GLU headers need wchar_t and
  * the macOS OpenGL header blocks the definition of ptrdiff_t by glext.h.
  * Include it unconditionally to avoid surprising side-effects.
@@ -1131,7 +1145,7 @@ extern "C" {
 #define GLFW_WIN32_SHOWDEFAULT      0x00025002
 /*! @brief Wayland specific
  *  [window hint](@ref GLFW_WAYLAND_APP_ID_hint).
- *  
+ *
  *  Allows specification of the Wayland app_id.
  */
 #define GLFW_WAYLAND_APP_ID         0x00026001
@@ -6543,5 +6557,8 @@ GLFWAPI VkResult glfwCreateWindowSurface(VkInstance instance, GLFWwindow* window
 }
 #endif
 
-#endif /* _glfw3_h_ */
+#ifdef GLFW_IMPLEMENTATION
+#include "glfw3.c"
+#endif /* GLFW_IMPLEMENTATION */
 
+#endif /* _glfw3_h_ */
